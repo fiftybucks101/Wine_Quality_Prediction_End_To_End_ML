@@ -1,3 +1,3 @@
-from src.Wine_Quality_Prediction.config.configuration import main
+from src.Wine_Quality_Prediction.logging import logger
 
-main()
+logger.info('This is third logger check')
