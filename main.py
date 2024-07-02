@@ -1,3 +1,3 @@
-from src.Wine_Quality_Prediction.logging import logger
+from src.Wine_Quality_Prediction.logging.logger import logger
 
-logger.info('This is third logger check')
+logger.info('Hello logging check!')
