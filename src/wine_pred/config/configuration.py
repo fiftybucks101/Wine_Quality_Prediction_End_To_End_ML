@@ -1,5 +1,6 @@
 from wine_pred.constants import *
 from wine_pred.utils.common import read_yaml, create_directories 
+from wine_pred.entity.config_entity import DataValidationConfig
 from wine_pred.entity.config_entity import DataIngestionConfig
 from wine_pred.constants import *
 
@@ -29,6 +30,27 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+    
+    def get_data_validation_config(self) -> DataValidationConfig:
+        config = self.config.data_validation
+        schema = self.schema.COLUMNS
+
+        create_directories([config.root_dir])
+
+        data_validation_config = DataValidationConfig(
+            root_dir=config.root_dir,
+            status_file=config.status_file,
+            unziped_data_dir=config.unziped_data_dir,
+            all_schema=schema
+        )
+
+        return data_validation_config
+    
+
+
+
+
+        
 
 
         
