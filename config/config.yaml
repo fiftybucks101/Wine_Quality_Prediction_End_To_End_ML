@@ -10,3 +10,7 @@ data_validation:
   root_dir: artifacts/data_validation
   status_file: artifacts/data_validation/status.txt
   unziped_data_dir: artifacts/data_ingestion/wine_quality_dataset/WineQT.csv
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  data_path: artifacts/data_ingestion/wine_quality_dataset/WineQT.csv
