@@ -10,4 +10,5 @@ joblib
 types-pyYAML
 Flask
 Flask-Cors
+typing
 -e .

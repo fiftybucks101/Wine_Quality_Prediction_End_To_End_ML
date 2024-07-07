@@ -3,6 +3,7 @@ from wine_pred.logging.logger import logger
 from wine_pred.components.data_ingestion import DataIngestion
 from wine_pred.components.data_validation import DataValidation
 from wine_pred.components.data_transformation import DataTransformation
+from wine_pred.components.model_trainer import ModelTrainer
 
 STAGE_NAME = "Data Ingestion Stage"
 try:
@@ -30,8 +31,18 @@ try:
     config = ConfigurationManager()
     data_transformation_config = config.get_data_transformation_config()
     data_transformation = DataTransformation(data_transformation_config)
-    data_transformation.data_transformation()
     data_transformation.data_train_test_split()
+    
 except Exception as e:
     logger.info(e)
     raise
+
+STAGE_NAME = "Model Training Stage"
+try:
+    config = ConfigurationManager()
+    model_trainer_config = config.get_model_trainer_config()
+    model_trainer = ModelTrainer(model_trainer_config)
+    model_trainer.Train()
+except Exception as e:
+    logger.info('Problem During Model Training')
+    raise e

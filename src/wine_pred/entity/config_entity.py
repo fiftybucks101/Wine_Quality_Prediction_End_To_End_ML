@@ -19,3 +19,17 @@ class DataValidationConfig:
 class DataTransformationConfig:
     root_dir: Path
     data_path: Path
+
+from typing import Optional
+
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    root_dir: Path
+    train_data_path: Path
+    test_data_path: Path
+    model_name: str
+    TARGET_COLUMN: str
+    max_depth: Optional[int]
+    max_features: str
+    min_samples_split: int
+    n_estimators: 50
