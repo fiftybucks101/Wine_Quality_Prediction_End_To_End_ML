@@ -4,6 +4,7 @@ from wine_pred.components.data_ingestion import DataIngestion
 from wine_pred.components.data_validation import DataValidation
 from wine_pred.components.data_transformation import DataTransformation
 from wine_pred.components.model_trainer import ModelTrainer
+from wine_pred.pipeline.stage_05_model_evaluation import ModelEvaluationPipeline
 
 STAGE_NAME = "Data Ingestion Stage"
 try:
@@ -45,4 +46,14 @@ try:
     model_trainer.Train()
 except Exception as e:
     logger.info('Problem During Model Training')
+    raise e
+
+STAGE_NAME = "Model Evaluation Stage"
+try:
+    logger.info(f">>>>> Stage: {STAGE_NAME} started <<<<<")
+    obj = ModelEvaluationPipeline()
+    obj.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+    logger.exception(e)
     raise e

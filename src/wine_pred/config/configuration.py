@@ -1,7 +1,7 @@
 from wine_pred.constants import *
 from wine_pred.utils.common import read_yaml, create_directories 
 from wine_pred.entity.config_entity import DataValidationConfig
-from wine_pred.entity.config_entity import DataIngestionConfig, DataTransformationConfig, ModelTrainerConfig
+from wine_pred.entity.config_entity import DataIngestionConfig, DataTransformationConfig, ModelTrainerConfig, ModelEvaluationConfig
 from wine_pred.constants import *
 
 class ConfigurationManager:
@@ -64,10 +64,6 @@ class ConfigurationManager:
         params = self.params.Random_Forest_Regressor
         schema =  self.schema.TARGET_COLUMN
 
-        print("Model Trainer Config:", config)  # Debugging print
-        print("Params:", params)  # Debugging print
-        print("Schema:", schema)  # Debugging print
-
         create_directories([config.root_dir])
 
         model_trainer_config = ModelTrainerConfig(
@@ -82,6 +78,25 @@ class ConfigurationManager:
             n_estimators=params.n_estimators)
         
         return model_trainer_config
+    
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        config = self.config.model_evaluation
+        schema = self.schema.TARGET_COLUMN
+
+        create_directories([config.root_dir])
+
+        model_evaluation_config = ModelEvaluationConfig(
+            root_dir = config.root_dir,
+            model_path = config.model_path,
+            train_data_path = config.train_data_path,
+            test_data_path=config.test_data_path,
+            train_metrics_file=config.train_metrics_file,
+            test_metrics_file=config.test_metrics_file,
+            name = schema.name,
+            model_name=config.model_name
+        )
+
+        return model_evaluation_config
     
 
 

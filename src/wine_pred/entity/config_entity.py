@@ -32,4 +32,15 @@ class ModelTrainerConfig:
     max_depth: Optional[int]
     max_features: str
     min_samples_split: int
-    n_estimators: 50
+    n_estimators: int
+
+@dataclass
+class ModelEvaluationConfig:
+    root_dir: Path
+    model_path: Path
+    train_data_path: Path
+    test_data_path: Path
+    train_metrics_file: str
+    test_metrics_file: str
+    name: str
+    model_name: str
